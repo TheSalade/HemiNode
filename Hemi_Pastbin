@@ -1,0 +1,34 @@
+------------------1-------------------
+sudo apt update && sudo apt upgrade -y
+sudo apt install screen
+
+------------------2-------------------
+mkdir POP && cd POP && wget https://github.com/hemilabs/heminetwork/releases/download/v0.4.3/heminetwork_v0.4.3_linux_amd64.tar.gz
+------------------3-------------------
+tar xvf heminetwork_v0.4.3_linux_amd64.tar.gz
+
+------------------4-------------------
+screen -S Hemi
+
+------------------5-------------------
+cd heminetwork_v0.4.3_linux_amd64
+
+------------------6-------------------
+./popmd --help
+
+------------------7-------------------
+chmod +x keygen && ./keygen -secp256k1 -json -net="testnet" > ~/popm-address.json
+
+------------------8-------------------
+cat ~/popm-address.json
+
+------------------9-------------------
+export POPM_BTC_PRIVKEY=[Same private key that you have generated RN]
+export POPM_STATIC_FEE=110
+export POPM_BFG_URL=wss://testnet.rpc.hemi.network/v1/ws/public
+------------------10-------------------
+
+./popmd
+------------------11-------------------
+
+screen -r Hemi
